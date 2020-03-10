@@ -1,0 +1,17 @@
+.master{
+  padding: 20px;
+}
+.master-header{
+  text-align: center;
+}
+.master-main{
+  display: flex;
+}
+
+.master-nav{
+  width: 200px;
+}
+#subapp-container{
+  flex: 1;
+  background: #eee;
+}
