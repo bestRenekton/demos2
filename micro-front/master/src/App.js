@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
+  const todos = useSelector((state) => { return state.todos; });
+  const dispatch = useDispatch();
+
   const goSubapp = (subapp) => {
     window.history.pushState(null, subapp, subapp)
   }
@@ -9,6 +13,7 @@ function App() {
     <div className="master">
       <header className="master-header">
         <h1>master</h1>
+        <p>master自己的store:{todos.num} <button onClick={() => { dispatch({ type: 'ADD_TODO' }) }}>点击增加</button> </p>
       </header>
       <div className="master-main">
         <ul className="master-nav">

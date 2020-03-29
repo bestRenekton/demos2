@@ -5,9 +5,14 @@ import App from './App';
 // import * as serviceWorker from './serviceWorker';
 import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start } from 'qiankun';
 import render from './ReactRender';
+import { createStore } from 'redux'
+import reducers from './reducers/index'
+import { Provider } from 'react-redux'
 
 
-ReactDOM.render(<App />, document.getElementById('master'));
+const store = createStore(reducers);
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('master'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -37,7 +42,7 @@ registerMicroApps(
             render,
             activeRule: genActiveRule('/app1-react-create'),
             props: {
-                test: 1
+                masterStore: store
             }
         },
         {
@@ -48,18 +53,9 @@ registerMicroApps(
             render,
             activeRule: genActiveRule('/app2-vue-cli'),
             props: {
-                test: 2
+                masterStore: store
             }
         },
-        // {
-        //     name: 'app3-react-umi',
-        //     entry: '//localhost:3003',
-        //     render,
-        //     activeRule: genActiveRule('/app3-react-umi'),
-        //     props: {
-        //         test: 3
-        //     }
-        // },
     ],
     {
         beforeLoad: [

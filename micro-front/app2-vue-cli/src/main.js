@@ -4,7 +4,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
 import routes from './router';
-// import store from './store';
+import store from './store';
 
 Vue.config.productionTip = false;
 
@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 let router = null;
 let instance = null;
 
-function render() {
+function render(masterStore) {
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? '/app2-vue-cli' : '/',
     mode: 'history',
@@ -22,7 +22,8 @@ function render() {
 
   instance = new Vue({
     router,
-    // store,
+    store,
+    data: { masterStore },
     render: h => h(App),
   }).$mount('#app');
 }
@@ -32,7 +33,6 @@ if (window.__POWERED_BY_QIANKUN__) {
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
 } else {
   render();
-
 }
 
 /**
@@ -45,9 +45,13 @@ export async function bootstrap() {
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
+let unsubscribe = null;
 export async function mount(props) {
   console.log('props from master %c%s', 'color: green;', 'app2-vue-cli', props);
-  render();
+  render(props.masterStore);
+  unsubscribe = props.masterStore.subscribe(() =>
+        render(props.masterStore)//监听主项目store更新，重新渲染子项目
+    )
 }
 /**
  * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载子应用的应用实例
@@ -56,4 +60,5 @@ export async function unmount() {
   instance.$destroy();
   instance = null;
   router = null;
+  unsubscribe();
 }
