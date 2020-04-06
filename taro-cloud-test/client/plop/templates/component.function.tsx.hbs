@@ -1,0 +1,42 @@
+import Taro, {
+  FC,
+  // useEffect,
+  // useRouter,
+} from '@tarojs/taro';
+// import { useSelector, useDispatch } from '@tarojs/redux';
+import {
+  View,
+  Text,
+  // Button,
+} from '@tarojs/components';
+import styles from './{{componentName}}.module.less';
+
+interface I{{componentName}} {
+  name: string
+}
+const {{componentName}}: FC<I{{componentName}}> = ({ name }) => {
+  // console.log('{{componentName}}', props);
+  //======================data======================
+  //   const counter = useSelector(e => e.counter);
+  //   const dispatch = useDispatch();
+  //   const router = useRouter();
+  //   console.log(counter, router);
+  //======================function======================
+  //======================effect======================
+  //======================render======================
+  return (
+    <View>
+      <Text>hello,{name}</Text>
+    </View>
+  );
+};
+
+// {{componentName}}.config = {
+//   navigationBarTitleText: '{{componentName}}'
+// };
+
+export default Taro.memo({{componentName}});
+
+
+
+

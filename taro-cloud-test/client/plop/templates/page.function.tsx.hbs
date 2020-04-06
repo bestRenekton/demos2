@@ -1,0 +1,40 @@
+import Taro, {
+  FC,
+  // useEffect,
+  // useRouter,
+} from '@tarojs/taro';
+// import { useSelector, useDispatch } from '@tarojs/redux';
+import {
+  View,
+  Text,
+  // Button,
+} from '@tarojs/components';
+import styles from './{{pageName}}.module.less';
+
+interface IPage {}
+const Page: FC<IPage> = (props) => {
+  // console.log('{{pageName}}', props);
+  //======================data======================
+  //   const counter = useSelector(e => e.counter);
+  //   const dispatch = useDispatch();
+  //   const router = useRouter();
+  //   console.log(counter, router);
+  //======================function======================
+  //======================effect======================
+  //======================render======================
+  return (
+    <View>
+      <Text>this {{pageName}}</Text>
+    </View>
+  );
+};
+
+Page.config = {
+  navigationBarTitleText: '{{pageName}}'
+};
+
+export default Taro.memo(Page);
+
+
+
+

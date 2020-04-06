@@ -1,0 +1,21 @@
+import React, { PureComponent } from 'react'
+import styles from './{{pageName}}.scss'
+
+interface I{{pageName}}Props {
+}
+interface I{{pageName}}State {
+}
+export class {{pageName}} extends PureComponent<I{{pageName}}Props, I{{pageName}}State> {
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        }
+    }
+    render() {
+        console.log(this)
+        return (
+            <div>{{pageName}}</div>
+        )
+    }
+}
