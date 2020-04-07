@@ -33,7 +33,7 @@ const Page: FC<Iindex> = (props) => {
   const [currentTodo, setcurrentTodo] = useState("");
   //======================function======================
   const init = () => {
-    wx.cloud
+    Taro.cloud
       .callFunction({
         name: "todos",
         data: {
@@ -59,7 +59,7 @@ const Page: FC<Iindex> = (props) => {
     return `${t.getFullYear()}/${t.getMonth() + 1}/${t.getDate()}`;
   };
   const addTodo = () => {
-    wx.cloud
+    Taro.cloud
       .callFunction({
         name: "todos",
         data: {
@@ -72,7 +72,7 @@ const Page: FC<Iindex> = (props) => {
       .then((res) => {
         let back = res.result;
         console.log(back);
-        wx.showToast({
+        Taro.showToast({
           title: back.data.msg,
           icon: "success",
           duration: 2000,
@@ -84,7 +84,7 @@ const Page: FC<Iindex> = (props) => {
       });
   };
   const changeTodo = (_id: string, type: number) => {
-    wx.cloud
+    Taro.cloud
       .callFunction({
         name: "todos",
         data: {
@@ -98,7 +98,7 @@ const Page: FC<Iindex> = (props) => {
       .then((res) => {
         let back = res.result;
         console.log(back);
-        wx.showToast({
+        Taro.showToast({
           title: back.data.msg,
           icon: "success",
           duration: 2000,

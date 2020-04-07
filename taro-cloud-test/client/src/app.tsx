@@ -18,10 +18,10 @@ const store = configStore();
 
 class App extends Component {
   componentDidMount() {
-    if (!wx.cloud) {
+    if (!Taro.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
-      wx.cloud.init({
+      Taro.cloud.init({
         env: "test-d7cy9", // 前往云控制台获取环境id
         traceUser: true,
       });
